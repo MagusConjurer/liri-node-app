@@ -37,13 +37,31 @@ function concertThis(artist){
 // Use Spotify to identify the artist and provide a preview
 // node liri.js spotify-this-song '<song name here>'
 function spotifyThisSong(song) {
+  if(!song){
+    song = "The Sign";
+  }
   spotify.search(
     {
       type: 'track',
       query: song
     }
   ).then(function(response){
-    console.log(response);
+    var songArtist = response.tracks.items[0].artists[0].name;
+    var songName = response.tracks.items[0].name;
+    var preview = response.tracks.items[0].preview_url;
+    var album = response.tracks.items[0].album.name;
+    
+    if(songArtist == null){
+      console.log("This song could not be found.")
+    } else {
+      console.log(songName + " by " + songArtist + ".");
+      console.log("Released on their album: " + album);
+      if(preview == null){
+        console.log("No preview available.");
+      } else {
+        console.log("Preview the song here: " + preview);
+      }
+    }
   }).catch(function(err){
     console.log(err);
   })
