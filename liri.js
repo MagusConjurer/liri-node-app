@@ -69,8 +69,34 @@ function spotifyThisSong(song) {
 };
 
 // Use OMDB to provide the movie details using axios
-function movieThis() {
+// node liri.js movie-this '<movie name here>'
+function movieThis(movie) {
+  if(!movie){
+    movie = "Mr. Nobody";
+  };
+  var movieURL = "http://www.omdbapi.com/?apikey=trilogy&t=" + movie;
+  axios.get(movieURL)
+  .then(function(response){
+    console.log("Title: " + response.data.Title);
+    console.log("Year: " + response.data.Year);
+    console.log("IMDB: " + response.data.Ratings[0].Value);
+    console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
+    console.log("Country: " + response.data.Country);
+    console.log("Language: " + response.data.Language);
+    console.log("Plot: " + response.data.Plot);
+    console.log("Actors: " + response.data.Actors);
 
+  }).catch(function(error){
+    if(error.response){
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if(error.request){
+      console.log(error.request);
+    } else {
+      console.log("Error", error.message);
+    };
+  });
 };
 
 // Use fs package to read random.txt file and call one of the LIRI commands
@@ -90,4 +116,6 @@ if(action == "concert-this"){
   concertThis(input);
 } else if (action == "spotify-this-song"){
   spotifyThisSong(input);
+} else if (action == "movie-this"){
+  movieThis(input);
 }
