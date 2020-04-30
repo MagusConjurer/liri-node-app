@@ -12,14 +12,18 @@ function concertThis(artist){
   var bandURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   axios.get(bandURL)
   .then(function(response){
-    if(response.venue == undefined){
+    if(response.data[0].venue == undefined){
       console.log("No event could be found.");
     } else {
       var venue = response.data[0].venue.name;
       var location = response.data[0].venue.location;
       // Use moment to convert to MM/DD/YYYY
       var date = response.data[0].datetime;
-      console.log(venue, location, date);
+      console.log(" ")
+      console.log("Artist: " + artist);
+      console.log("Venue: " + venue);
+      console.log("Location: " + location);
+      console.log("Date: " + date);
     };
   }).catch(function(error){
     if(error.response){
@@ -54,6 +58,7 @@ function spotifyThisSong(song) {
     if(songArtist == null){
       console.log("This song could not be found.")
     } else {
+      console.log(" ");
       console.log(songName + " by " + songArtist + ".");
       console.log("Released on their album: " + album);
       if(preview == null){
@@ -77,15 +82,19 @@ function movieThis(movie) {
   var movieURL = "http://www.omdbapi.com/?apikey=trilogy&t=" + movie;
   axios.get(movieURL)
   .then(function(response){
-    console.log("Title: " + response.data.Title);
-    console.log("Year: " + response.data.Year);
-    console.log("IMDB: " + response.data.Ratings[0].Value);
-    console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
-    console.log("Country: " + response.data.Country);
-    console.log("Language: " + response.data.Language);
-    console.log("Plot: " + response.data.Plot);
-    console.log("Actors: " + response.data.Actors);
-
+    if(response.data.Title == undefined){
+      console.log("No movie could be found for: " + movie);
+    } else {
+      console.log(" ");
+      console.log("Title: " + response.data.Title);
+      console.log("Year: " + response.data.Year);
+      console.log("IMDB: " + response.data.Ratings[0].Value);
+      console.log("Rotten Tomatoes: " + response.data.Ratings[1].Value);
+      console.log("Country: " + response.data.Country);
+      console.log("Language: " + response.data.Language);
+      console.log("Plot: " + response.data.Plot);
+      console.log("Actors: " + response.data.Actors);
+    }
   }).catch(function(error){
     if(error.response){
       console.log(error.response.data);
@@ -100,8 +109,23 @@ function movieThis(movie) {
 };
 
 // Use fs package to read random.txt file and call one of the LIRI commands
+//node liri.js do-what-it-says
 function doWhatItSays(){
-
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    if(error){
+      return console.log(error);
+    }
+    var randomActions = data.split(",");
+    for(var i = 0; i < randomActions.length; i++){
+      if(randomActions[i] == "concert-this"){
+        concertThis(randomActions[i+1]);
+      } else if (randomActions[i] == "spotify-this-song"){
+        spotifyThisSong(randomActions[i+1]);
+      } else if (randomActions[i] == "movie-this"){
+        movieThis(randomActions[i+1]);
+      }
+    }
+  });
 };
 
 // Use fs package to store a history of commands that have been run.
@@ -118,4 +142,6 @@ if(action == "concert-this"){
   spotifyThisSong(input);
 } else if (action == "movie-this"){
   movieThis(input);
+} else if (action == "do-what-it-says"){
+  doWhatItSays();
 }
