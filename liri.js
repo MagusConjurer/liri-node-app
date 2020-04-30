@@ -3,7 +3,8 @@ var axios = require("axios");
 var fs = require("fs");
 var keys = require("./keys.js");
 var moment = require("moment");
-//var spotify = new Spotify(keys.spotify);
+var Spotify = require("node-spotify-api");
+var spotify = new Spotify(keys.spotify);
 
 // Use Bands in Town to return a concert for the artist
 // node liri.js concert-this <artist/band name here>
@@ -11,11 +12,15 @@ function concertThis(artist){
   var bandURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   axios.get(bandURL)
   .then(function(response){
-    var venue = response.data[0].venue.name;
-    var location = response.data[0].venue.location;
-    // Use moment to convert to MM/DD/YYYY
-    var date = response.data[0].datetime;
-    console.log(venue, location, date);
+    if(response.venue == undefined){
+      console.log("No event could be found.");
+    } else {
+      var venue = response.data[0].venue.name;
+      var location = response.data[0].venue.location;
+      // Use moment to convert to MM/DD/YYYY
+      var date = response.data[0].datetime;
+      console.log(venue, location, date);
+    };
   }).catch(function(error){
     if(error.response){
       console.log(error.response.data);
@@ -30,7 +35,18 @@ function concertThis(artist){
 };
 
 // Use Spotify to identify the artist and provide a preview
-function spotifyThisSong() {
+// node liri.js spotify-this-song '<song name here>'
+function spotifyThisSong(song) {
+  spotify.search(
+    {
+      type: 'track',
+      query: song
+    }
+  ).then(function(response){
+    console.log(response);
+  }).catch(function(err){
+    console.log(err);
+  })
 
 };
 
@@ -52,6 +68,8 @@ function logAction(){
 var action = process.argv[2];
 var input = process.argv[3];
 
-if(action = "concert-this"){
+if(action == "concert-this"){
   concertThis(input);
-};
+} else if (action == "spotify-this-song"){
+  spotifyThisSong(input);
+}
