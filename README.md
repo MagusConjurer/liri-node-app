@@ -21,16 +21,16 @@ This app is accessed through a command line terminal.
 
 ### Examples
 Concert This
-![concert-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/concert-this.png)
+![concert-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/concert-this.PNG)
 
 Spotify This Song
-![spotify-this-song screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/spotify-this-song.png)
+![spotify-this-song screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/spotify-this-song.PNG)
 
 Movie This
-![movie-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/movie-this.png)
+![movie-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/movie-this.PNG)
 
 Do What It Says
-![do-what-it-says screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/do-what-it-says.png)
+![do-what-it-says screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/do-what-it-says.PNG)
 
 ### Technology Used
 - Node.js
