@@ -17,19 +17,20 @@ This app is accessed through a command line terminal.
     - This will return the title, year, IMDB rating, Rotten Tomatoes rating, country, language, plot and actors.
   - node liri.js do-what-it-says
     - This will read the text entered in random.txt and run any matching commands. 
+5. You can update random.txt with any actions in the following format: action,input
 
 ### Examples
 Concert This
-![concert-this screenshot](https://github.com/MagusConjurer/liri-node-app/images/concert-this.png)
+![concert-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/concert-this.png)
 
 Spotify This Song
-![spotify-this-song screenshot](https://github.com/MagusConjurer/liri-node-app/images/spotify-this-song.png)
+![spotify-this-song screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/spotify-this-song.png)
 
 Movie This
-![movie-this screenshot](https://github.com/MagusConjurer/liri-node-app/images/movie-this.png)
+![movie-this screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/movie-this.png)
 
 Do What It Says
-![do-what-it-says screenshot](https://github.com/MagusConjurer/liri-node-app/images/do-what-it-says.png)
+![do-what-it-says screenshot](https://github.com/MagusConjurer/liri-node-app/tree/master/images/do-what-it-says.png)
 
 ### Technology Used
 - Node.js
