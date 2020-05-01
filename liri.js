@@ -17,8 +17,8 @@ function concertThis(artist){
     } else {
       var venue = response.data[0].venue.name;
       var location = response.data[0].venue.location;
-      // Use moment to convert to MM/DD/YYYY
       var date = response.data[0].datetime;
+      date = moment(date, "YYYY-MM-DD HH:mm:ss").format("MM-DD-YYYY");
       console.log(" ")
       console.log("Artist: " + artist);
       console.log("Venue: " + venue);
@@ -129,19 +129,34 @@ function doWhatItSays(){
 };
 
 // Use fs package to store a history of commands that have been run.
-function logAction(){
-
-}
+function logAction(action, input){
+  var logItem;
+  if(!input){
+    logItem = "\n" + moment().format('MM-DD-YYYY, HH:mm:ss a') + "," + action;
+  }else{
+    logItem = "\n" + moment().format('MM-DD-YYYY, HH:mm:ss a') + "," + action + "," + input;
+  };
+  
+  fs.appendFile("log.txt", logItem, function(err){
+    if(err){
+      return console.log(err);
+    };
+  });
+};
 
 var action = process.argv[2];
 var input = process.argv[3];
 
 if(action == "concert-this"){
   concertThis(input);
+  logAction(action, input);
 } else if (action == "spotify-this-song"){
   spotifyThisSong(input);
+  logAction(action, input);
 } else if (action == "movie-this"){
   movieThis(input);
+  logAction(action, input);
 } else if (action == "do-what-it-says"){
   doWhatItSays();
+  logAction(action);
 }
