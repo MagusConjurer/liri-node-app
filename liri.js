@@ -7,7 +7,7 @@ var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 
 // Use Bands in Town to return a concert for the artist
-// node liri.js concert-this <artist/band name here>
+// node liri.js concert-this 'artist/band name here'
 function concertThis(artist){
   var bandURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   axios.get(bandURL)
@@ -39,7 +39,7 @@ function concertThis(artist){
 };
 
 // Use Spotify to identify the artist and provide a preview
-// node liri.js spotify-this-song '<song name here>'
+// node liri.js spotify-this-song 'song name here'
 function spotifyThisSong(song) {
   if(!song){
     song = "The Sign";
@@ -74,7 +74,7 @@ function spotifyThisSong(song) {
 };
 
 // Use OMDB to provide the movie details using axios
-// node liri.js movie-this '<movie name here>'
+// node liri.js movie-this 'movie name here'
 function movieThis(movie) {
   if(!movie){
     movie = "Mr. Nobody";
