@@ -109,7 +109,7 @@ function movieThis(movie) {
 };
 
 // Use fs package to read random.txt file and call one of the LIRI commands
-//node liri.js do-what-it-says
+// node liri.js do-what-it-says
 function doWhatItSays(){
   fs.readFile("random.txt", "utf8", function(error, data) {
     if(error){
