@@ -7,16 +7,21 @@ This app is accessed through a command line terminal.
 ### How to Use
 1. Download the directory
 2. Run "npm install" to install the npms from the package
-3. Create a .env file and enter your Spotify ID and secret
+3. Create an .env file and enter your Spotify ID and secret
+      ~~~
+      SPOTIFY_ID=#####
+      SPOTIFY_SECRET=#####
+      ~~~
+    - These can be created by going to: https://developer.spotify.com/my-applications/
 4. You are now ready to use one of the following commands:
-  - node liri.js concert-this 'artist/band name here'
-    - This will return the venue name, venue location and event date.
-  - node liri.js spotify-this-song 'song name here'
-    - This will return the artist(s), song name, the album name, and a preview link.
-  - node liri.js movie-this 'movie name here'
-    - This will return the title, year, IMDB rating, Rotten Tomatoes rating, country, language, plot and actors.
-  - node liri.js do-what-it-says
-    - This will read the text entered in random.txt and run any matching commands. 
+   - node liri.js concert-this 'artist/band name here'
+     - This will return the venue name, venue location and event date.
+   - node liri.js spotify-this-song 'song name here'
+     - This will return the artist(s), song name, the album name, and a preview link.
+   - node liri.js movie-this 'movie name here'
+     - This will return the title, year, IMDB rating, Rotten Tomatoes rating, country, language, plot and actors.
+   - node liri.js do-what-it-says
+     - This will read the text entered in random.txt and run any matching commands. 
 5. You can update random.txt with any actions in the following format: action,input
 
 ### Examples

@@ -145,7 +145,7 @@ function logAction(action, input){
 };
 
 var action = process.argv[2];
-var input = process.argv[3];
+var input = process.argv.slice(3).join(" ");
 
 if(action == "concert-this"){
   concertThis(input);
